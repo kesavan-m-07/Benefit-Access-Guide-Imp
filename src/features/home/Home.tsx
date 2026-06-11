@@ -32,7 +32,7 @@ const Home = () => {
       month: "",
       day: "",
       year: "",
-      gender: "",
+      gender: undefined,
       address: "",
       city: "",
       state: "",
