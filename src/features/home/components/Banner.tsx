@@ -1,4 +1,4 @@
-const Banner = () => {
+const BannerNotification = () => {
   return (
     <div className="bg-brand-blue w-full h-7 grid place-content-center">
       <p className="text-center text-banner-note font-lato text-white sm:text-caption-sm">
@@ -8,4 +8,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default BannerNotification;

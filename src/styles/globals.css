@@ -11,7 +11,7 @@
 
 @layer utilities {
   .bg-hero-banner {
-    background-image: url("/src/assets/images/banner-flag.png");
+    background-image: url("/src/assets/images/banner-flag.webp");
     background-size: 220%;
     background-position: 14% 4.5%;
     background-repeat: no-repeat;

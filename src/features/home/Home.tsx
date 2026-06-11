@@ -1,7 +1,4 @@
-import Banner from "./components/Banner";
-import moneyImage from "../../assets/images/money-hero.png";
-import { Container, TextInput } from "../../shared/components";
-import { Button } from "../../shared/components/Button";
+import BannerNotification from "./components/Banner";
 import Icon from "../../shared/components/Icons/Icon";
 import BenefitListItem from "./components/BenefitListItem";
 import { BenefitsList } from "./data";
@@ -12,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
 import { formSchema } from "./schema";
 import type { FormValues } from "./schema";
+import LandingPage from "./components/LandingPage";
 
 export type FormSteps =
   | "landing"
@@ -26,7 +24,7 @@ const Home = () => {
   const methods = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     mode: "onTouched",
-    reValidateMode:'onChange',
+    reValidateMode: "onChange",
     defaultValues: {
       email: "",
       firstName: "",
@@ -85,43 +83,10 @@ const Home = () => {
           <div className="relative bg-hero-banner bg-no-repeat bg-cover">
             <div className="bg-hero-gradient pb-8 z-10 relative">
               <div className="relative z-20 lg:pb-20">
-                <Banner />
+                <BannerNotification />
 
                 {step === "landing" ? (
-                  <Container className="p-3 rounded-xl backdrop-blur-lg flex flex-col bg-white items-center mt-3 pb-6">
-                    <h1 className="font-fira font-bold text-hero-headline text-center text-brand-blue sm:text-5xl pt-10">
-                      Find Your Unclaimed Money
-                    </h1>
-
-                    <img
-                      src={moneyImage}
-                      alt="money"
-                      className="mt-3 w-full sm:mt-5 sm:w-1/2 sm:mx-auto"
-                    />
-
-                    <motion.p
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, ease: "easeOut" }}
-                      className="mt-4 text-center font-lato font-semibold text-lg text-muted sm:w-3/4 sm:mx-auto lg:w-4/6"
-                    >
-                      Get your free, made-for-you guide to unclaimed money,
-                      savings, and cash opportunities
-                    </motion.p>
-
-                    <TextInput
-                      label="email"
-                      containerClassName="mt-2"
-                      registration={methods.register("email")}
-                      error={methods.formState.errors.email}
-                    />
-
-                    <Button
-                      className="mt-hero-cta sm:mt-hero-cta"
-                      onClick={() => handleNext("landing")}>
-                      Get My Guide
-                    </Button>
-                  </Container>
+                  <LandingPage handleNext={handleNext} />
                 ) : (
                   <FormStepsComponent
                     step={step}
@@ -138,8 +103,7 @@ const Home = () => {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.4, delay: 0.1 }}
-                        className="text-body-base font-semibold mt-1"
-                      >
+                        className="text-body-base font-semibold mt-1">
                         Secure & Private
                       </motion.p>
                     </div>
@@ -150,8 +114,7 @@ const Home = () => {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.4, delay: 0.2 }}
-                        className="text-body-base font-semibold mt-1"
-                      >
+                        className="text-body-base font-semibold mt-1">
                         Free Access
                       </motion.p>
                     </div>

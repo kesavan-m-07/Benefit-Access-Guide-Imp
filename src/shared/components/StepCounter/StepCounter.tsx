@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Logo } from "../Logo";
-import moneyImage from "../../../assets/images/money-hero.png";
+import moneyImage from "../../../assets/images/money.webp";
 import type { FormSteps } from "../../../features/home/Home";
 import { Container } from "../Container";
 import { cn } from "../../utils";

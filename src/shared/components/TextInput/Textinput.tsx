@@ -52,7 +52,7 @@ export const TextInput: React.FC<TextInputProps> = ({
           "w-full rounded-md border-2 h-10 px-3 text-base outline-none transition bg-white text-default",
           hasError
             ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-            : "border-dark focus:ring-blue-500",
+            : "border-dark focus:border-blue-500 focus:ring-blue-500",
           className,
         )}
       />
