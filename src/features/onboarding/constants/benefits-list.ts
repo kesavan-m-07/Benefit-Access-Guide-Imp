@@ -1,4 +1,4 @@
-import type { BenefitListItem } from "../types";
+import type { BenefitListItem } from "@features/onboarding/types";
 
 export const BenefitsList: BenefitListItem[] = [
   { title: "Discover your benefits guide, created uniquely for you." },

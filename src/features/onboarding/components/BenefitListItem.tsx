@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import Icon from "../../../shared/components/Icons/Icon";
-import type { BenefitListItem as BenefitListItemType } from "../types";
+import Icon from "@shared/components/Icons/Icon";
+import type { BenefitListItem as BenefitListItemType } from "@features/onboarding/types";
 
 const BenefitListItem = (benefit: BenefitListItemType) => {
   const { title, onClick } = benefit;

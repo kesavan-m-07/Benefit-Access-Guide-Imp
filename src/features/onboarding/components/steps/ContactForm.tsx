@@ -1,9 +1,8 @@
 import { useFormContext, useWatch } from "react-hook-form";
-import { Container, TextInput } from "../../../shared/components";
+import { Container, TextInput } from "@shared/components";
 import { motion } from "framer-motion";
-import { Button } from "../../../shared/components/Button";
-import type { FormValues } from "../schema/onboarding-form-schema.ts";
-
+import { Button } from "@shared/components/Button";
+import type { FormValues } from "@features/onboarding/schema/onboarding-form-schema.ts";
 
 const ContactForm = () => {
   const {
@@ -45,7 +44,7 @@ const ContactForm = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.15 }}
-        className="w-full max-h-65 overflow-y-auto text-left mt-2">
+        className="w-full text-left mt-2">
         <p className="text-footnote font-lato font-medium text-secondary">
           By selecting “Continue”, I provide my ESIGN signature and express
           consent for GetnGoods, Unified Marketing Partners & its{" "}
@@ -55,16 +54,16 @@ const ContactForm = () => {
             href="https://unified-marketingpartners.com/subsidiaries2">
             Subsidiaries
           </a>
-          , SnagnGoods, USMsg, MyJobMobile, OMG Sweeps, Best Day Ever Sweepstakes,
-          FamilyRecoveryHub, Dollar-Sensei, CheckGo, Lendli, Benefitlink, Americas
-          Health and Grant-Navigators to contact me at the phone number I provided
-          for marketing and transactional messages, including personal finance,
-          benefits & sweepstakes, via text and calls, which may use automated,
-          manual, prerecorded, or AI technology, until I revoke consent. This
-          applies even if my number is on a "Do Not Call" list. Consent is not
-          required to to use this site or obtain goods/services.{" "}
-          <span className="text-blue-500">Click Here</span> to proceed without
-          consent. I have read and agree to the{" "}
+          , SnagnGoods, USMsg, MyJobMobile, OMG Sweeps, Best Day Ever
+          Sweepstakes, FamilyRecoveryHub, Dollar-Sensei, CheckGo, Lendli,
+          Benefitlink, Americas Health and Grant-Navigators to contact me at the
+          phone number I provided for marketing and transactional messages,
+          including personal finance, benefits & sweepstakes, via text and
+          calls, which may use automated, manual, prerecorded, or AI technology,
+          until I revoke consent. This applies even if my number is on a "Do Not
+          Call" list. Consent is not required to to use this site or obtain
+          goods/services. <span className="text-blue-500">Click Here</span> to
+          proceed without consent. I have read and agree to the{" "}
           <a
             title="https://gettnngooods.com/p/gg-terms"
             href="https://gettnngooods.com/p/gg-terms"
@@ -73,7 +72,6 @@ const ContactForm = () => {
           </a>
           , including mandatory arbitration, and for resolving disputes and TCPA
           claim.
-          
         </p>
       </motion.div>
 

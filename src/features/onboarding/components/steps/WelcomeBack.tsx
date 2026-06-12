@@ -1,4 +1,4 @@
-import { Button, Container } from "../../../shared/components";
+import { Button, Container } from "@shared/components";
 
 const WelcomeBack = () => {
   return (

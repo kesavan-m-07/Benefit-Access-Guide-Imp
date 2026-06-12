@@ -1,7 +1,7 @@
-import BannerNotification from "./components/Banner";
-import Icon from "../../shared/components/Icons/Icon";
+import BannerNotification from "./components/BannerNotification.tsx";
+import Icon from "@shared/components/Icons/Icon";
 import BenefitListItem from "./components/BenefitListItem";
-import { BenefitsList } from "./data";
+import { BenefitsList } from "./constants/benefits-list.ts";
 import { useState } from "react";
 import FormStepsComponent from "./components/FormSteps";
 import { FormProvider, useForm } from "react-hook-form";
@@ -9,18 +9,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
 import { formSchema } from "./schema/onboarding-form-schema.ts";
 import type { FormValues } from "./schema/onboarding-form-schema.ts";
-import EmailForm from "./components/EmailForm";
+import EmailForm from "./components/steps/EmailForm";
 import { STEP_FLOW } from "./constants";
 
 export type FormSteps =
-  | "landing"
+  | "email"
   | "basicInfo"
   | "address"
   | "contact"
   | "welcomeBack";
 
-const Home = () => {
-  const [step, setStep] = useState<FormSteps>("landing");
+const Onboarding = () => {
+  const [step, setStep] = useState<FormSteps>("email");
 
   const methods = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -48,8 +48,6 @@ const Home = () => {
   };
 
   const handleNext = async () => {
-    console.log("Running....");
-
     const config = STEP_FLOW[step];
 
     const isValid = config.fields.length
@@ -68,24 +66,20 @@ const Home = () => {
     }
   };
 
-  // const handleSubmit = methods.handleSubmit(onSubmit);
-
   return (
     <FormProvider {...methods}>
       <div className="relative">
-        <div className="relative bg-hero-banner bg-no-repeat bg-cover">
+        <div className="relative bg-hero-banner bg-no-repeat">
           <div className="bg-hero-gradient pb-8 z-10 relative">
             <div className="relative z-20 lg:pb-20">
               <BannerNotification />
 
               <form
                 onSubmit={(e) => {
-                  console.log("Clicking...");
-
                   e.preventDefault();
                   handleNext();
                 }}>
-                {step === "landing" ? (
+                {step === "email" ? (
                   <EmailForm />
                 ) : (
                   <FormStepsComponent step={step} onStepClick={setStep} />
@@ -131,4 +125,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Onboarding;

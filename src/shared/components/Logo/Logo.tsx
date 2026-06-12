@@ -1,5 +1,5 @@
-import Icon from "../Icons/Icon";
-import { cn } from "../../utils";
+import Icon from "@shared/components/Icons/Icon";
+import { cn } from "@shared/utils";
 
 type LogoProps = {
   className?: string;

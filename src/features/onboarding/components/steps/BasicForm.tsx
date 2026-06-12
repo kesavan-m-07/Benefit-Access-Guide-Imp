@@ -1,9 +1,9 @@
 import { useFormContext, useWatch } from "react-hook-form";
-import { Container, SelectBox, TextInput } from "../../../shared/components";
+import { Container, SelectBox, TextInput } from "@shared/components";
 import { motion } from "framer-motion";
-import { Button } from "../../../shared/components/Button";
-import type { FormValues } from "../schema/onboarding-form-schema.ts";
-import { months, years, genderOptions } from "../constants/basic-form";
+import { Button } from "@shared/components/Button";
+import type { FormValues } from "@features/onboarding/schema/onboarding-form-schema.ts";
+import { months, years, genderOptions } from "@features/onboarding/constants/basic-form";
 
 const BasicForm = () => {
   const {

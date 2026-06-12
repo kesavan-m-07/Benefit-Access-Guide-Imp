@@ -3,8 +3,8 @@ import { useFormContext, Controller } from "react-hook-form";
 import type { FieldError } from "react-hook-form";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "../../utils";
-import Icon from "../Icons/Icon";
+import { cn } from "@shared/utils";
+import Icon from "@shared/components/Icons/Icon";
 
 type Option = {
   label: string;

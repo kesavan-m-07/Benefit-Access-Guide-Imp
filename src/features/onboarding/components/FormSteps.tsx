@@ -1,6 +1,6 @@
-import StepCounter from "../../../shared/components/StepCounter/StepCounter";
-import type { FormSteps } from "../Home";
-import { stepRegistry } from "../constants";
+import StepCounter from "./StepCounter/StepCounter";
+import type { FormSteps } from "@features/onboarding/Onboarding";
+import { stepRegistry } from "@features/onboarding/constants";
 import { motion, AnimatePresence } from "framer-motion";
 
 type FormStepsProps = {
@@ -9,7 +9,7 @@ type FormStepsProps = {
 };
 
 const FormStepsComponent = ({ step, onStepClick }: FormStepsProps) => {
-  if (step === "landing") return null;
+  if (step === "email") return null;
 
   return (
     <div className="px-tight pb-card py-card m-compact">

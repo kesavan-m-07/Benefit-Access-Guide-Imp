@@ -1,5 +1,5 @@
 import { Outlet } from "@tanstack/react-router";
-import Footer from "../shared/components/Footer/Footer";
+import Footer from "@shared/components/Footer/Footer";
 
 const AppLayout = () => {
   return (

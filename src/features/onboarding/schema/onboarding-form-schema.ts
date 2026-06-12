@@ -10,8 +10,8 @@ export const formSchema = z
       .min(1, "First name is required")
       .max(50, "First name is too long")
       .regex(
-        /^[a-zA-Z\s'-]+$/,
-        "First name can only contain letters, spaces, apostrophes, and hyphens",
+        /^[a-zA-Z\s.'-]+$/,
+        "First name can only contain letters, spaces, periods, apostrophes, and hyphens",
       ),
 
     lastName: z
@@ -20,8 +20,8 @@ export const formSchema = z
       .min(1, "Last name is required")
       .max(50, "Last name is too long")
       .regex(
-        /^[a-zA-Z\s'-]+$/,
-        "Last name can only contain letters, spaces, apostrophes, and hyphens",
+        /^[a-zA-Z\s.'-]+$/,
+        "Last name can only contain letters, spaces, periods, apostrophes, and hyphens",
       ),
 
     month: z.string().min(1, "Month is required"),
@@ -63,12 +63,15 @@ export const formSchema = z
     zipCode: z
       .string()
       .trim()
-      .regex(/^\d{6}$/, "Please enter a valid 6-digit zip code"),
+      .regex(/^\d{5}$/, "Please enter a valid 5-digit ZIP code"),
 
     phoneNumber: z
       .string()
       .trim()
-      .regex(/^[6-9]\d{9}$/, "Please enter a valid phone number"),
+      .regex(
+        /^(\+1\s?)?(\(\d{3}\)|\d{3})[-.\s]?\d{3}[-.\s]?\d{4}$/,
+        "Please enter a valid US phone number",
+      ),
   })
   .superRefine(({ day, month, year }, ctx) => {
     const date = new Date(Number(year), Number(month) - 1, Number(day));

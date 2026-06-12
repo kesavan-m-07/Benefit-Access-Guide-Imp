@@ -1,14 +1,18 @@
 import { motion } from "framer-motion";
-import { Button, Container, TextInput } from "../../../shared/components";
-import moneyImage from "../../../assets/images/money.webp";
-import { useFormContext } from "react-hook-form";
-import type { FormValues } from "../schema/onboarding-form-schema.ts";
+import { Button, Container, TextInput } from "@shared/components";
+import moneyImage from "@assets/images/money.webp";
+import { useFormContext, useWatch } from "react-hook-form";
+import type { FormValues } from "@features/onboarding/schema/onboarding-form-schema.ts";
 
 const EmailForm = () => {
   const {
     register,
+    control,
     formState: { errors },
   } = useFormContext<FormValues>();
+
+  const email = useWatch({ name: "email", control });
+
   return (
     <Container className="p-3 rounded-xl backdrop-blur-lg flex flex-col bg-white items-center mt-3 pb-6">
       <h1 className="font-fira font-bold text-hero-headline text-center text-brand-blue sm:text-5xl pt-10">
@@ -42,6 +46,7 @@ const EmailForm = () => {
 
       <Button
         type="submit"
+        disabled={!email?.trim()}
         className="mt-hero-cta sm:mt-hero-cta">
         Get My Guide
       </Button>

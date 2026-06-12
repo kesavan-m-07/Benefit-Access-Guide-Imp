@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Logo } from "../Logo";
+import { Logo } from "@shared/components/Logo";
 import { footerNav } from "./data/nav-links";
 
 const Footer = () => {

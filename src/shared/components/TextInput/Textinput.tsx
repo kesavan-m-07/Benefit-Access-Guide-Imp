@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useId } from "react";
 import type { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
 import type { HTMLMotionProps } from "framer-motion";
-import { cn } from "../../utils";
+import { cn } from "@shared/utils";
 
 type TextInputProps = Omit<HTMLMotionProps<"input">, "ref"> & {
   label?: string;
@@ -23,15 +23,21 @@ export const TextInput: React.FC<TextInputProps> = ({
 }) => {
   const hasError = !!error;
 
+  const generatedId = useId();
+  const inputId = props.id ?? registration?.name ?? generatedId;
+
   return (
     <div className={cn("flex flex-col gap-1 w-full", containerClassName)}>
       {label && (
-        <label className="text-sm text-gray-700 uppercase font-lato font-bold tracking-widest mb-1">
+        <label
+          htmlFor={inputId}
+          className="text-sm text-gray-700 uppercase font-lato font-bold tracking-widest mb-1">
           {label}
         </label>
       )}
 
       <motion.input
+        id={inputId}
         {...props}
         {...registration}
         whileTap={{
@@ -47,7 +53,6 @@ export const TextInput: React.FC<TextInputProps> = ({
               }
             : {}
         }
-        
         className={cn(
           "w-full rounded-md border-2 h-10 px-3 text-base outline-none transition bg-white text-default",
           hasError

@@ -1,16 +1,16 @@
 import { motion } from "framer-motion";
-import { Logo } from "../Logo";
-import moneyImage from "../../../assets/images/money.webp";
-import type { FormSteps } from "../../../features/home/Home";
-import { Container } from "../Container";
-import { cn } from "../../utils";
+import { Logo } from "@shared/components/Logo";
+import moneyImage from "@assets/images/money.webp";
+import type { FormSteps } from "@features/onboarding/Onboarding";
+import { Container } from "@shared/components/Container";
+import { cn } from "@shared/utils";
 
 type StepCounterProps = {
   step: FormSteps;
   onStepClick: (step: FormSteps) => void;
 };
 
-const stepOrder: FormSteps[] = ["landing", "basicInfo", "address", "contact"];
+const stepOrder: FormSteps[] = ["email", "basicInfo", "address", "contact"];
 
 const StepCounter = ({ step, onStepClick }: StepCounterProps) => {
   const currentStepIndex =

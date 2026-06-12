@@ -1,8 +1,8 @@
-import Lock from "../../../assets/icons/lock.svg?react";
-import Hand from "../../../assets/icons/hand.svg?react";
-import Tick from "../../../assets/icons/tick.svg?react";
-import Logo from "../../../assets/icons/logo.svg?react";
-import DropDown from "../../../assets/icons/drop-down.svg?react";
+import Lock from "@assets/icons/lock.svg?react";
+import Hand from "@assets/icons/hand.svg?react";
+import Tick from "@assets/icons/tick.svg?react";
+import Logo from "@assets/icons/logo.svg?react";
+import DropDown from "@assets/icons/drop-down.svg?react";
 
 type SvgIconProps = { size?: number; className?: string; strokeWidth?: number };
 

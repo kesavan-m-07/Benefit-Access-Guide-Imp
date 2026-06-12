@@ -1,5 +1,5 @@
-import type { FormSteps } from "../Home.tsx";
-import type { FormValues } from "../schema/onboarding-form-schema.ts";
+import type { FormSteps } from "@features/onboarding/Onboarding.tsx";
+import type { FormValues } from "@features/onboarding/schema/onboarding-form-schema.ts";
 
 export const STEP_FLOW: Record<
   FormSteps,
@@ -9,7 +9,7 @@ export const STEP_FLOW: Record<
     isFinal?: boolean;
   }
 > = {
-  landing: {
+  email: {
     fields: ["email"],
     next: "basicInfo",
   },
