@@ -2,45 +2,10 @@ import { useFormContext, useWatch } from "react-hook-form";
 import { Container, SelectBox, TextInput } from "../../../shared/components";
 import { motion } from "framer-motion";
 import { Button } from "../../../shared/components/Button";
-import type { FormValues } from "../schema";
+import type { FormValues } from "../schema/onboarding-form-schema.ts";
+import { months, years, genderOptions } from "../constants/basic-form";
 
-type BasicFormProps = {
-  onNext: () => void;
-};
-
-const months = [
-  { label: "January", value: "01" },
-  { label: "February", value: "02" },
-  { label: "March", value: "03" },
-  { label: "April", value: "04" },
-  { label: "May", value: "05" },
-  { label: "June", value: "06" },
-  { label: "July", value: "07" },
-  { label: "August", value: "08" },
-  { label: "September", value: "09" },
-  { label: "October", value: "10" },
-  { label: "November", value: "11" },
-  { label: "December", value: "12" },
-];
-
-const currentYear = new Date().getFullYear();
-
-const years = Array.from({ length: 100 }, (_, i) => {
-  const yearStr = String(currentYear - i);
-
-  return {
-    label: yearStr,
-    value: yearStr,
-  };
-});
-
-const genderOptions = [
-  { label: "Male", value: "male" },
-  { label: "Female", value: "female" },
-  { label: "Other", value: "other" },
-];
-
-const BasicForm = ({ onNext }: BasicFormProps) => {
+const BasicForm = () => {
   const {
     register,
     control,
@@ -125,7 +90,7 @@ const BasicForm = ({ onNext }: BasicFormProps) => {
         className="mt-3"
       />
 
-      <Button className="mt-8" onClick={onNext} type="button">
+      <Button className="mt-8" type="submit">
         Continue
       </Button>
     </Container>

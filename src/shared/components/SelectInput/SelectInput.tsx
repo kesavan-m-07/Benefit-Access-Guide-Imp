@@ -140,6 +140,7 @@ const SelectBoxInner = ({
         }}>
         <SelectPrimitive.Trigger asChild>
           <motion.button
+            type="button"
             whileFocus={{ scale: 1.01 }}
             animate={hasError ? { x: [0, -8, 8, -8, 8, -4, 4, 0] } : { x: 0 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}

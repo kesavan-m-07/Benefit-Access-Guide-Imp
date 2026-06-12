@@ -2,14 +2,9 @@ import { motion } from "framer-motion";
 import { Button, Container, TextInput } from "../../../shared/components";
 import moneyImage from "../../../assets/images/money.webp";
 import { useFormContext } from "react-hook-form";
-import type { FormValues } from "../schema";
-import type { FormSteps } from "../Home";
+import type { FormValues } from "../schema/onboarding-form-schema.ts";
 
-const LandingPage = ({
-  handleNext,
-}: {
-  handleNext: (currentStep: FormSteps) => Promise<void>;
-}) => {
+const EmailForm = () => {
   const {
     register,
     formState: { errors },
@@ -46,12 +41,12 @@ const LandingPage = ({
       />
 
       <Button
-        className="mt-hero-cta sm:mt-hero-cta"
-        onClick={() => handleNext("landing")}>
+        type="submit"
+        className="mt-hero-cta sm:mt-hero-cta">
         Get My Guide
       </Button>
     </Container>
   );
 };
 
-export default LandingPage;
+export default EmailForm;

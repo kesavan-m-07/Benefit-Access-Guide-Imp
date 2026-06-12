@@ -6,10 +6,10 @@ const WelcomeBack = () => {
       <h1 className="text-2xl font-medium font-helvetica mt-10 ">
         Welcome back! Are you feeling lucky today?
       </h1>
-      <Button variant="secondary" className="mb-2 mt-20 mx-5">
+      <Button variant="secondary" type="button" className="mb-2 mt-20 mx-5">
         Yes
       </Button>
-      <Button variant="secondary">No</Button>
+      <Button variant="secondary" type="button">No</Button>
     </Container>
   );
 };

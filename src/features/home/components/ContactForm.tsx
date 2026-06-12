@@ -2,13 +2,10 @@ import { useFormContext, useWatch } from "react-hook-form";
 import { Container, TextInput } from "../../../shared/components";
 import { motion } from "framer-motion";
 import { Button } from "../../../shared/components/Button";
-import type { FormValues } from "../schema";
+import type { FormValues } from "../schema/onboarding-form-schema.ts";
 
-type ContactFormProps = {
-  onNext: () => void;
-};
 
-const ContactForm = ({ onNext }: ContactFormProps) => {
+const ContactForm = () => {
   const {
     register,
     control,
@@ -80,7 +77,7 @@ const ContactForm = ({ onNext }: ContactFormProps) => {
         </p>
       </motion.div>
 
-      <Button className="mt-6" onClick={onNext} type="button">
+      <Button className="mt-6" type="submit">
         Continue
       </Button>
     </Container>
