@@ -1,4 +1,4 @@
-import type { FormSteps } from "../index";
+import type { FormSteps } from "../Home.tsx";
 import type { FormValues } from "../schema/onboarding-form-schema.ts";
 
 export const STEP_FLOW: Record<
