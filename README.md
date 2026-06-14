@@ -121,4 +121,23 @@ benefit-access-guide-imp/
   - **Fluid Transitions**: Utilizing `framer-motion` to animate form cards as they enter/exit gives the page an active, response-oriented feel.
   - **Trust Badging**: Placed secure verification elements ("Secure & Private", "256-bit encryption") near the submission button to lower user friction and increase questionnaire completion rates.
 
+### iv. Contextual Placeholders & Input Guidance
+
+* **Rationale**: Form fields were enhanced with realistic, context-aware placeholders (e.g., `John`, `Doe`, `name@example.com`, `New York`, `10001`) rather than leaving fields empty or relying solely on labels.
+* **Benefits**:
+
+  * **Reduced Cognitive Load**: Users immediately understand the expected input format without having to infer requirements from validation messages.
+  * **Faster Form Completion**: Example values provide instant context, reducing hesitation and minimizing time spent interpreting field expectations.
+  * **Validation Error Prevention**: Format-sensitive fields such as Email, ZIP Code, and Address become self-explanatory, decreasing the likelihood of incorrect submissions.
+  * **Improved First-Time User Experience**: Users can quickly scan the form and understand the type of information being requested before interacting with each field.
+
+### v. Required Field Indicators & Visual Form Clarity
+
+* **Rationale**: A standardized required-field indicator (`*`) was introduced across all mandatory inputs to clearly communicate submission requirements before user interaction.
+* **Benefits**:
+
+  * **Expectation Setting**: Users can instantly identify mandatory fields without triggering validation errors first.
+  * **Reduced Form Friction**: Prevents the frustrating submit–error–correct cycle by making requirements visible upfront.
+  * **Consistent Validation Language**: The visual indicator aligns with React Hook Form and Zod validation rules, ensuring the interface communicates the same requirements enforced by application logic.
+
 ---

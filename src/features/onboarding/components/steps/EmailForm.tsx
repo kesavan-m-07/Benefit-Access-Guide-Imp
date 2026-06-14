@@ -16,7 +16,10 @@ const EmailForm = () => {
   return (
     <Container className="h-full w-full lg:w-full lg:max-w-full flex-1 p-6 sm:p-8 rounded-2xl border border-slate-200/50 bg-white/75 backdrop-blur-md flex flex-col items-center mt-3 pb-8 shadow-md mx-auto">
       <h1 className="font-fira font-extrabold text-5xl text-center pt-6 tracking-tight">
-        Find Your <span className="bg-clip-text text-transparent bg-linear-to-r from-indigo-500 to-indigo-800">Unclaimed Money</span>
+        Find Your{" "}
+        <span className="bg-clip-text text-transparent bg-linear-to-r from-indigo-500 to-indigo-800">
+          Unclaimed Money
+        </span>
       </h1>
       <img
         src={moneyImage}
@@ -38,7 +41,9 @@ const EmailForm = () => {
 
       <TextInput
         label="email"
+        required
         containerClassName="mt-2"
+        placeholder="john.doe@example.com"
         registration={register("email")}
         error={errors.email}
       />

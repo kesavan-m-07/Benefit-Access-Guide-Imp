@@ -36,12 +36,17 @@ const AddressForm = () => {
       <TextInput
         label="zip code"
         containerClassName="mt-3"
+        required
+        placeholder="10001"
         registration={register("zipCode")}
         error={errors.zipCode}
       />
+
       <TextInput
         label="address"
         containerClassName="mt-3"
+        required
+        placeholder="123 Main Street, Apartment 4B"
         registration={register("address")}
         error={errors.address}
       />
@@ -49,6 +54,8 @@ const AddressForm = () => {
         <TextInput
           label="city"
           containerClassName="mt-3 flex-1"
+          required
+          placeholder="Los Angeles"
           registration={register("city")}
           error={errors.city}
         />
@@ -57,6 +64,7 @@ const AddressForm = () => {
           className="mt-3 flex-1"
           options={stateOptions}
           name="state"
+          placeholder="State"
           error={errors.state}
         />
       </div>

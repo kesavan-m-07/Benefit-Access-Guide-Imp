@@ -19,6 +19,7 @@ interface SelectBoxProps {
   helperText?: string;
   name?: string;
   disabled?: boolean;
+  required?: boolean;
   value?: string;
   onChange?: (value: string) => void;
   onBlur?: () => void;
@@ -35,6 +36,7 @@ export function SelectBox({
   name,
   disabled,
   value,
+  required,
   onChange,
   onBlur,
   className,
@@ -60,6 +62,7 @@ export function SelectBox({
             placeholder={placeholder}
             options={options}
             disabled={disabled}
+            required={required}
             error={fieldError}
             helperText={helperText}
             value={field.value ?? ""}
@@ -81,7 +84,7 @@ export function SelectBox({
       error={error}
       helperText={helperText}
       value={value ?? ""}
-      onChange={onChange ?? (() => { })}
+      onChange={onChange ?? (() => {})}
       onBlur={onBlur}
       className={className}
       selectClassName={selectClassName}
@@ -95,6 +98,7 @@ interface SelectBoxInnerProps {
   options: Option[];
   error?: FieldError;
   helperText?: string;
+  required?: boolean;
   disabled?: boolean;
   value: string;
   onChange: (value: string) => void;
@@ -109,6 +113,7 @@ const SelectBoxInner = ({
   options,
   error,
   helperText,
+  required = true,
   value,
   disabled,
   onChange,
@@ -119,12 +124,14 @@ const SelectBoxInner = ({
   const hasError = !!error;
   const [open, setOpen] = React.useState(false);
 
+  const selectedOption = options.find((opt) => opt.value === value);
   return (
-    <div className={cn("flex min-w-0 flex-col gap-1.5 w-full group", className)}>
+    <div
+      className={cn("flex min-w-0 flex-col gap-1.5 w-full group", className)}>
       {label && (
         <label className="block w-full whitespace-nowrap text-xs text-slate-500 group-focus-within:text-indigo-600 uppercase font-lato font-semibold tracking-wider mb-1 transition-colors">
           {label}
-          <span className="text-red-500 ml-1 font-bold">*</span>
+          {required && <span className="text-red-500 ml-1 font-bold">*</span>}
         </label>
       )}
 
@@ -154,10 +161,12 @@ const SelectBoxInner = ({
                   : "border-slate-200/80 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20",
                 selectClassName,
               )}>
-              <span className="truncate text-slate-800">
-                {options.find((opt) => opt.value === value)?.label ||
-                  placeholder ||
-                  ""}
+              <span
+                className={cn(
+                  "truncate",
+                  selectedOption ? "text-slate-800" : "text-slate-800/40 font-medium",
+                )}>
+                {selectedOption?.label || placeholder || ""}
               </span>
 
               <SelectPrimitive.Icon asChild>

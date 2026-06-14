@@ -1,5 +1,10 @@
 import { useFormContext } from "react-hook-form";
-import { Container, SelectBox, TextInput, DatePicker } from "@shared/components";
+import {
+  Container,
+  SelectBox,
+  TextInput,
+  DatePicker,
+} from "@shared/components";
 import { motion } from "framer-motion";
 import { Button } from "@shared/components/Button";
 import type { FormValues } from "@features/onboarding/schema/onboarding-form-schema.ts";
@@ -28,21 +33,22 @@ const BasicForm = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mt-4">
         <TextInput
           label="first name"
+          required
+          placeholder="John"
           registration={register("firstName")}
           error={errors.firstName}
         />
+
         <TextInput
           label="last name"
+          required
+          placeholder="Doe"
           registration={register("lastName")}
           error={errors.lastName}
         />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mt-4 items-start">
-        <DatePicker
-          label="Date of Birth"
-          name="dob"
-          disableFutureDates
-        />
+        <DatePicker label="Date of Birth" name="dob" disableFutureDates />
         <SelectBox
           label="Gender"
           options={genderOptions}
@@ -60,4 +66,3 @@ const BasicForm = () => {
 };
 
 export default BasicForm;
-
