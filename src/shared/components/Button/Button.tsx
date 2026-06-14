@@ -25,9 +25,9 @@ export const Button: React.FC<ButtonProps> = ({
 
   const variants: Record<ButtonVariant, string> = {
     primary:
-      "bg-action font-fira text-white text-2xl uppercase hover:bg-blue-700 focus:ring-2 focus:ring-blue-400",
+      "bg-indigo-600 font-fira text-white text-2xl uppercase hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-400 shadow-md shadow-indigo-600/20 active:scale-[0.99]",
     secondary:
-      "bg-primary capitalize rounded-md h-16 text-2xl text-white hover:bg-primary-hover focus:ring-2 focus:ring-gray-400",
+      "bg-indigo-600 capitalize rounded-md h-16 text-2xl text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-400 shadow-md shadow-indigo-600/20 active:scale-[0.99]",
   };
 
   return (

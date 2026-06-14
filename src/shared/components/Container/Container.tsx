@@ -15,7 +15,7 @@ const Container = ({
   return (
     <Component
       className={cn(
-        "sm:px-15 m-3 sm:w-8/10 sm:mx-auto lg:w-240 lg:px-card5 lg:pb-10",
+        "sm:px-15 m-3 sm:w-8/10 sm:mx-auto lg:w-240 lg:px-card5 lg:pb-10 mx-auto",
         className
       )}
     >

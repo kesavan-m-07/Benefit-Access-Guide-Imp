@@ -1,16 +1,16 @@
 import BannerNotification from "./components/BannerNotification.tsx";
-import Icon from "@shared/components/Icons/Icon";
 import BenefitListItem from "./components/BenefitListItem";
 import { BenefitsList } from "./constants/benefits-list.ts";
 import { useState } from "react";
 import FormStepsComponent from "./components/FormSteps";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { motion } from "framer-motion";
 import { formSchema } from "./schema/onboarding-form-schema.ts";
 import type { FormValues } from "./schema/onboarding-form-schema.ts";
 import EmailForm from "./components/steps/EmailForm";
 import { STEP_FLOW } from "./constants";
+import StepCounter from "./components/StepCounter/StepCounter";
+import TrustBadges from "./components/TrustBadges.tsx";
 
 export type FormSteps =
   | "email"
@@ -30,9 +30,7 @@ const Onboarding = () => {
       email: "",
       firstName: "",
       lastName: "",
-      month: "",
-      day: "",
-      year: "",
+      dob: undefined,
       gender: undefined,
       address: "",
       city: "",
@@ -68,59 +66,69 @@ const Onboarding = () => {
 
   return (
     <FormProvider {...methods}>
-      <div className="relative">
-        <div className="relative bg-hero-banner bg-no-repeat">
-          <div className="bg-hero-gradient pb-8 z-10 relative">
-            <div className="relative z-20 lg:pb-20">
-              <BannerNotification />
+      <BannerNotification />
 
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  handleNext();
-                }}>
-                {step === "email" ? (
-                  <EmailForm />
-                ) : (
-                  <FormStepsComponent step={step} onStepClick={setStep} />
-                )}
-              </form>
+      {step === "welcomeBack" ? (
+        <div className="max-w-2xl mx-auto px-4 mt-12 w-full">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleNext();
+            }}>
+            <FormStepsComponent step={step} />
+          </form>
+        </div>
+      ) : (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 lg:mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch relative z-20">
+          <div className="hidden lg:flex flex-col lg:col-span-3 gap-4 h-full">
+            <StepCounter step={step} onStepClick={setStep} layout="vertical" />
 
-              <div className="flex text-white justify-center gap-11 font-fira pb-6 sm:hidden mt-6">
-                <div className="flex flex-col items-center">
-                  <Icon name="lock" size={70} />
-                  <motion.p
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: 0.1 }}
-                    className="text-body-base font-semibold mt-1">
-                    Secure & Private
-                  </motion.p>
-                </div>
+            <div className="flex flex-col gap-3">
+              <TrustBadges />
+            </div>
+          </div>
+          <div className="lg:col-span-9 h-full flex flex-col justify-between">
+            <div className="block lg:hidden w-full">
+              <StepCounter
+                step={step}
+                onStepClick={setStep}
+                layout="horizontal"
+              />
+            </div>
 
-                <div className="flex flex-col items-center">
-                  <Icon name="hand" size={70} />
-                  <motion.p
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: 0.2 }}
-                    className="text-body-base font-semibold mt-1">
-                    Free Access
-                  </motion.p>
-                </div>
-              </div>
+            <form
+              className="flex flex-col flex-1 h-full relative z-10"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleNext();
+              }}>
+              {step === "email" ? (
+                <EmailForm />
+              ) : (
+                <FormStepsComponent step={step} />
+              )}
+            </form>
+            <div className="hidden lg:grid grid-cols-3 gap-4 mt-6 w-full">
+              {BenefitsList.map((benefit, i) => (
+                <BenefitListItem key={i} {...benefit} />
+              ))}
             </div>
           </div>
         </div>
+      )}
 
-        {step !== "welcomeBack" && (
-          <div className="mx-4 space-y-6 mt-8 relative z-0 sm:w-3/5 sm:mx-auto">
+      {step !== "welcomeBack" && (
+        <div className="w-full flex flex-col gap-6 mt-6 lg:hidden px-4 relative z-0">
+          <div className="flex flex-col gap-4">
             {BenefitsList.map((benefit, i) => (
               <BenefitListItem key={i} {...benefit} />
             ))}
           </div>
-        )}
-      </div>
+          <div className="flex justify-center gap-4 mt-2 font-fira pb-6">
+            <TrustBadges mobile />
+          </div>
+        </div>
+      )}
     </FormProvider>
   );
 };

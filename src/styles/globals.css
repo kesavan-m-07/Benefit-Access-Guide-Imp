@@ -9,31 +9,30 @@
   --font-helvetica: Helvetica, Arial, sans-serif;
 }
 
+@layer base {
+  body {
+    background: linear-gradient(135deg, #f4f6fc 0%, #edf1f8 100%);
+    color: #1e293b; /* Slate-800 */
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+  }
+}
+
 @layer utilities {
   .bg-hero-banner {
-    background-image: url("/src/assets/images/banner-flag.webp");
-    background-size: 220%;
-    background-position: 14% 28px;
+    background-image: 
+      linear-gradient(to bottom, rgba(244, 246, 252, 0.92) 0%, rgba(244, 246, 252, 0.98) 100%),
+      url("/src/assets/images/banner-flag.webp");
+    background-size: cover;
+    background-position: center top;
     background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 
   @media (min-width: 768px) {
     .bg-hero-banner {
-      background-size: 160%;
-      background-position: center top;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .bg-hero-banner {
-      background-size: 100%;
-      background-position: center top;
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .bg-hero-banner {
-      background-size: 100%;
+      background-size: contain;
       background-position: center top;
     }
   }
@@ -41,16 +40,12 @@
   .bg-hero-gradient {
     background: linear-gradient(
       to bottom,
-      rgba(11, 61, 107, 0) 0%,
-      rgba(11, 61, 107, 0.8) 20%,
-      #104e8b 60%
+      rgba(244, 246, 252, 0) 0%,
+      rgba(244, 246, 252, 0.6) 30%,
+      #f4f6fc 100%
     );
   }
 
-  /* Semantic Text Sizes */
-  .text-hero-headline {
-    font-size: 34px;
-  }
 
   .text-body-base {
     font-size: 16px;
@@ -58,6 +53,7 @@
 
   .text-footnote {
     font-size: 13px;
+    line-height: 1.6;
   }
 
   .text-caption-sm {
@@ -65,84 +61,99 @@
   }
 
   .text-banner-note {
-    font-size: 9px;
+    font-size: 10px;
+    letter-spacing: 0.05em;
   }
 
-  /* Semantic Text Colors */
   .text-brand-blue {
-    color: #104e8b;
+    color: #4f46e5;
   }
 
   .text-muted {
-    color: #515151;
+    color: #64748b; 
   }
 
   .text-default {
-    color: #34343f;
+    color: #1e293b; 
   }
 
   .text-body {
-    color: #333333;
+    color: #334155;
   }
 
   .text-secondary {
-    color: #666666;
+    color: #64748b;
   }
 
   .text-dark {
-    color: #2c2c37;
+    color: #0f172a; 
   }
 
   .text-accent {
-    color: #004b87;
+    color: #3b82f6; 
   }
 
+
   .bg-brand-blue {
-    background-color: #1874cd;
+    background-color: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
 
   .bg-surface {
-    background-color: #fdf5ee;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
   }
 
   .bg-action {
-    background-color: #ff7f24;
+    background: linear-gradient(135deg, #ff823c 0%, #ff5533 100%);
+    box-shadow: 0 4px 15px rgba(255, 85, 51, 0.25);
+  }
+  
+  .bg-action:hover:not(:disabled) {
+    background: linear-gradient(135deg, #ff9455 0%, #ff6849 100%);
+    box-shadow: 0 6px 20px rgba(255, 85, 51, 0.38);
   }
 
   .bg-primary {
-    background-color: #2f69b3;
+    background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.25);
   }
 
   .bg-success {
-    background-color: #548b54;
+    background-color: #10b981; /* Emerald green */
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
   }
 
   .bg-inactive {
-    background-color: #cbb49f;
+    background-color: #e2e8f0; /* Slate-200 */
   }
 
   .hover\:bg-surface-soft:hover {
-    background-color: #faebd7;
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.08);
   }
 
   .hover\:bg-primary-hover:hover {
-    background-color: #2f69c3;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.45);
   }
 
   .border-default {
-    border-color: #34343f;
+    border-color: rgba(0, 0, 0, 0.08);
   }
 
   .border-dark {
-    border-color: #2c2c37;
+    border-color: rgba(0, 0, 0, 0.12);
   }
 
   .focus\:bg-surface-soft:focus {
-    background-color: #ebf5ff;
+    background: rgba(255, 255, 255, 0.95);
   }
 
   .focus\:text-brand-blue:focus {
-    color: #104e8b;
+    color: #4f46e5;
   }
 
   .min-w-select-trigger {
@@ -154,11 +165,11 @@
   }
 
   .mt-hero-cta {
-    margin-top: 6.25rem;
+    margin-top: 3.5rem;
   }
 
   .sm\:mt-hero-cta {
-    margin-top: 5rem;
+    margin-top: 3.5rem;
   }
 
   @media (min-width: 640px) {
@@ -167,19 +178,19 @@
     }
 
     .sm\:mt-hero-cta {
-      margin-top: 5rem;
+      margin-top: 3.5rem;
     }
 
     .sm\:mx-page {
-      margin-left: 8.75rem;
-      margin-right: 8.75rem;
+      margin-left: 4rem;
+      margin-right: 4rem;
     }
   }
 
   @media (min-width: 1024px) {
     .lg\:mx-page {
-      margin-left: 17.5rem;
-      margin-right: 17.5rem;
+      margin-left: 8rem;
+      margin-right: 8rem;
     }
   }
 }

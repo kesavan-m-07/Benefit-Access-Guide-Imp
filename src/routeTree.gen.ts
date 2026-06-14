@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as NotFoundRouteImport } from './routes/not-found'
 import { Route as _appRouteRouteImport } from './routes/__app/route'
 import { Route as _appIndexRouteImport } from './routes/__app/index'
 
+const NotFoundRoute = NotFoundRouteImport.update({
+  id: '/not-found',
+  path: '/not-found',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const _appRouteRoute = _appRouteRouteImport.update({
   id: '/__app',
   getParentRoute: () => rootRouteImport,
@@ -24,29 +30,40 @@ const _appIndexRoute = _appIndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof _appIndexRoute
+  '/not-found': typeof NotFoundRoute
 }
 export interface FileRoutesByTo {
+  '/not-found': typeof NotFoundRoute
   '/': typeof _appIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/__app': typeof _appRouteRouteWithChildren
+  '/not-found': typeof NotFoundRoute
   '/__app/': typeof _appIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/not-found'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/__app' | '/__app/'
+  to: '/not-found' | '/'
+  id: '__root__' | '/__app' | '/not-found' | '/__app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   _appRouteRoute: typeof _appRouteRouteWithChildren
+  NotFoundRoute: typeof NotFoundRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/not-found': {
+      id: '/not-found'
+      path: '/not-found'
+      fullPath: '/not-found'
+      preLoaderRoute: typeof NotFoundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/__app': {
       id: '/__app'
       path: ''
@@ -78,6 +95,7 @@ const _appRouteRouteWithChildren = _appRouteRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   _appRouteRoute: _appRouteRouteWithChildren,
+  NotFoundRoute: NotFoundRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

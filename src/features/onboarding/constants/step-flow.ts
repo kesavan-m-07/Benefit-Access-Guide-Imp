@@ -14,7 +14,7 @@ export const STEP_FLOW: Record<
     next: "basicInfo",
   },
   basicInfo: {
-    fields: ["firstName", "lastName", "month", "day", "year", "gender"],
+    fields: ["firstName", "lastName", "dob", "gender"],
     next: "address",
   },
   address: {

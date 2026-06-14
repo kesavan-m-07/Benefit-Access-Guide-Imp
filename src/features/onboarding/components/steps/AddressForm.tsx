@@ -18,10 +18,10 @@ const AddressForm = () => {
   });
 
   return (
-    <Container className="p-3 rounded-xl backdrop-blur-lg flex flex-col bg-white items-center mt-3 pb-6">
-      <h1 className="font-fira text-brand-blue font-bold text-2xl text-center">
+    <Container className="h-full w-full lg:w-full lg:max-w-full flex-1 p-6 sm:p-8 rounded-2xl border border-slate-200/50 bg-white/75 backdrop-blur-md flex flex-col items-center mt-3 pb-8 shadow-md">
+      <h1 className="font-fira text-slate-900 font-bold text-2xl text-center pt-2 tracking-wide">
         Keep Going,{" "}
-        <span className="inline-block max-w-truncate truncate align-bottom">
+        <span className="inline-block max-w-truncate truncate align-bottom text-indigo-600 font-extrabold">
           {firstName}
         </span>
         !
@@ -30,7 +30,7 @@ const AddressForm = () => {
         initial={{ opacity: 0, y: 5 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="font-lato font-medium text-lg text-gray-600">
+        className="font-lato font-medium text-base text-slate-500 mt-1 mb-2">
         Now we just need the basics
       </motion.p>
       <TextInput

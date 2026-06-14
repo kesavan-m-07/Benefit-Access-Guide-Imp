@@ -14,15 +14,14 @@ const EmailForm = () => {
   const email = useWatch({ name: "email", control });
 
   return (
-    <Container className="p-3 rounded-xl backdrop-blur-lg flex flex-col bg-white items-center mt-3 pb-6">
-      <h1 className="font-fira font-bold text-hero-headline text-center text-brand-blue sm:text-5xl pt-10">
-        Find Your Unclaimed Money
+    <Container className="h-full w-full lg:w-full lg:max-w-full flex-1 p-6 sm:p-8 rounded-2xl border border-slate-200/50 bg-white/75 backdrop-blur-md flex flex-col items-center mt-3 pb-8 shadow-md mx-auto">
+      <h1 className="font-fira font-extrabold text-5xl text-center pt-6 tracking-tight">
+        Find Your <span className="bg-clip-text text-transparent bg-linear-to-r from-indigo-500 to-indigo-800">Unclaimed Money</span>
       </h1>
-
       <img
         src={moneyImage}
         alt="money"
-        className="mt-3 w-full sm:mt-5 sm:w-1/2 sm:mx-auto"
+        className="mt-4 w-1/3 max-w-32.5 sm:mt-5 sm:mx-auto"
         loading="eager"
         fetchPriority="high"
         decoding="async"
@@ -32,7 +31,7 @@ const EmailForm = () => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="mt-4 text-center font-lato font-semibold text-lg text-muted sm:w-3/4 sm:mx-auto lg:w-4/6">
+        className="mt-4 text-center font-lato font-medium text-base sm:text-lg text-slate-600 sm:w-6/12 sm:mx-auto">
         Get your free, made-for-you guide to unclaimed money, savings, and cash
         opportunities
       </motion.p>

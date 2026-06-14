@@ -24,17 +24,13 @@ export const formSchema = z
         "Last name can only contain letters, spaces, periods, apostrophes, and hyphens",
       ),
 
-    month: z.string().min(1, "Month is required"),
-
-    day: z.string().min(1, "Day is required"),
-
-    year: z
-      .string()
-      .min(1, "Year is required")
-      .refine((year) => {
+    dob: z
+      .date({
+        error: "Date of Birth is required"
+      })
+      .refine((date) => {
         const currentYear = new Date().getFullYear();
-        const num = Number(year);
-
+        const num = date.getFullYear();
         return num >= currentYear - 120 && num <= currentYear;
       }, "Please enter a valid year"),
 
@@ -72,22 +68,6 @@ export const formSchema = z
         /^(\+1\s?)?(\(\d{3}\)|\d{3})[-.\s]?\d{3}[-.\s]?\d{4}$/,
         "Please enter a valid US phone number",
       ),
-  })
-  .superRefine(({ day, month, year }, ctx) => {
-    const date = new Date(Number(year), Number(month) - 1, Number(day));
-
-    const isValidDate =
-      date.getFullYear() === Number(year) &&
-      date.getMonth() === Number(month) - 1 &&
-      date.getDate() === Number(day);
-
-    if (!isValidDate) {
-      ctx.addIssue({
-        code: "custom",
-        path: ["day"],
-        message: "Please select a valid date",
-      });
-    }
   });
 
 export type FormValues = z.infer<typeof formSchema>;

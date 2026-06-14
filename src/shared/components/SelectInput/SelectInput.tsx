@@ -81,7 +81,7 @@ export function SelectBox({
       error={error}
       helperText={helperText}
       value={value ?? ""}
-      onChange={onChange ?? (() => {})}
+      onChange={onChange ?? (() => { })}
       onBlur={onBlur}
       className={className}
       selectClassName={selectClassName}
@@ -120,92 +120,96 @@ const SelectBoxInner = ({
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className={cn("flex min-w-0 flex-col gap-1 w-full", className)}>
+    <div className={cn("flex min-w-0 flex-col gap-1.5 w-full group", className)}>
       {label && (
-        <label className="block w-full whitespace-nowrap text-sm font-lato font-bold tracking-widest uppercase text-gray-700 mb-1">
+        <label className="block w-full whitespace-nowrap text-xs text-slate-500 group-focus-within:text-indigo-600 uppercase font-lato font-semibold tracking-wider mb-1 transition-colors">
           {label}
+          <span className="text-red-500 ml-1 font-bold">*</span>
         </label>
       )}
 
-      <SelectPrimitive.Root
-        value={value}
-        disabled={disabled}
-        onValueChange={onChange}
-        open={open}
-        onOpenChange={(isOpen) => {
-          setOpen(isOpen);
-          if (!isOpen && onBlur) {
-            onBlur();
-          }
-        }}>
-        <SelectPrimitive.Trigger asChild>
-          <motion.button
-            type="button"
-            whileFocus={{ scale: 1.01 }}
-            animate={hasError ? { x: [0, -8, 8, -8, 8, -4, 4, 0] } : { x: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            className={cn(
-              "h-10 w-full rounded-md border-2 bg-white px-5 text-base outline-none transition flex items-center justify-between text-default cursor-pointer",
-              hasError
-                ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-                : "border-default focus:border-blue-500 focus:ring-blue-500",
-              selectClassName,
-            )}>
-            <span className="truncate">
-              {options.find((opt) => opt.value === value)?.label ||
-                placeholder ||
-                ""}
-            </span>
+      <motion.div
+        animate={hasError ? { x: [0, -8, 8, -6, 6, -4, 4, -2, 2, 0] } : {}}
+        transition={{ duration: 0.7, ease: "easeInOut" }}
+        className="w-full">
+        <SelectPrimitive.Root
+          value={value}
+          disabled={disabled}
+          onValueChange={onChange}
+          open={open}
+          onOpenChange={(isOpen) => {
+            setOpen(isOpen);
+            if (!isOpen && onBlur) {
+              onBlur();
+            }
+          }}>
+          <SelectPrimitive.Trigger asChild>
+            <motion.button
+              type="button"
+              whileFocus={{ scale: 1.01 }}
+              className={cn(
+                "h-12 w-full rounded-xl border px-4 text-base outline-none transition-all duration-300 flex items-center justify-between text-default cursor-pointer bg-white shadow-sm",
+                hasError
+                  ? "border-red-500/70 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                  : "border-slate-200/80 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20",
+                selectClassName,
+              )}>
+              <span className="truncate text-slate-800">
+                {options.find((opt) => opt.value === value)?.label ||
+                  placeholder ||
+                  ""}
+              </span>
 
-            <SelectPrimitive.Icon asChild>
-              <motion.div
-                animate={{ rotate: open ? 180 : 0 }}
-                transition={{ duration: 0.2 }}
-                className="flex items-center justify-center ml-2 text-default">
-                <Icon name="dropdown" size={10} />
-              </motion.div>
-            </SelectPrimitive.Icon>
-          </motion.button>
-        </SelectPrimitive.Trigger>
+              <SelectPrimitive.Icon asChild>
+                <motion.div
+                  animate={{ rotate: open ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="flex items-center justify-center ml-2 text-slate-400">
+                  <Icon name="dropdown" size={10} />
+                </motion.div>
+              </SelectPrimitive.Icon>
+            </motion.button>
+          </SelectPrimitive.Trigger>
 
-        <SelectPrimitive.Portal>
-          <SelectPrimitive.Content
-            position="popper"
-            sideOffset={4}
-            className="z-50 min-w-select-trigger max-h-60 overflow-y-auto rounded-md border-2 border-default bg-white text-default shadow-lg">
-            <SelectPrimitive.Viewport className="p-1">
-              {options.map((option) => (
-                <SelectPrimitive.Item
-                  key={option.value}
-                  value={option.value}
-                  className={cn(
-                    "relative flex w-full select-none items-center rounded-sm py-2 pl-8 pr-4 text-base outline-none cursor-pointer font-medium font-lato transition-colors",
-                    "focus:bg-surface-soft focus:text-brand-blue data-[state=checked]:bg-blue-50 data-[state=checked]:text-brand-blue",
-                  )}>
-                  <span className="absolute left-2.5 flex h-3.5 w-3.5 items-center justify-center">
-                    <SelectPrimitive.ItemIndicator>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="h-4.5 w-4.5 text-brand-blue">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </SelectPrimitive.ItemIndicator>
-                  </span>
-                  <SelectPrimitive.ItemText>
-                    {option.label}
-                  </SelectPrimitive.ItemText>
-                </SelectPrimitive.Item>
-              ))}
-            </SelectPrimitive.Viewport>
-          </SelectPrimitive.Content>
-        </SelectPrimitive.Portal>
-      </SelectPrimitive.Root>
+          <SelectPrimitive.Portal>
+            <SelectPrimitive.Content
+              position="popper"
+              sideOffset={4}
+              className="z-50 min-w-select-trigger max-h-60 overflow-y-auto rounded-xl border border-slate-200 bg-white text-slate-800 shadow-2xl">
+              <SelectPrimitive.Viewport className="p-1.5">
+                {options.map((option) => (
+                  <SelectPrimitive.Item
+                    key={option.value}
+                    value={option.value}
+                    className={cn(
+                      "relative flex w-full select-none items-center rounded-lg py-2.5 pl-8 pr-4 text-base outline-none cursor-pointer font-medium font-lato transition-colors text-slate-650",
+                      "focus:bg-indigo-50 focus:text-indigo-600 data-[state=checked]:bg-indigo-500/10 data-[state=checked]:text-indigo-600",
+                    )}>
+                    <span className="absolute left-2.5 flex h-3.5 w-3.5 items-center justify-center">
+                      <SelectPrimitive.ItemIndicator>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="h-4 w-4 text-indigo-600">
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                      </SelectPrimitive.ItemIndicator>
+                    </span>
+                    <SelectPrimitive.ItemText>
+                      {option.label}
+                    </SelectPrimitive.ItemText>
+                  </SelectPrimitive.Item>
+                ))}
+              </SelectPrimitive.Viewport>
+            </SelectPrimitive.Content>
+          </SelectPrimitive.Portal>
+        </SelectPrimitive.Root>
+      </motion.div>
 
       <AnimatePresence mode="wait">
         {hasError ? (
