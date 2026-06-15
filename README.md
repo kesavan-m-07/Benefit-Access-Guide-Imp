@@ -76,6 +76,7 @@ benefit-access-guide-imp/
 │   ├── features/           # Feature-scoped components, contexts, and hooks
 │   │   └── onboarding/     # Onboarding module containing:
 │   │       ├── components/ # Step components (BasicForm, EmailForm, StepCounter)
+│   │       │               # Note: Component test files (*.test.tsx) are co-located here
 │   │       ├── constants/  # Step registrations and helper maps
 │   │       ├── schema/     # Zod form validation schemas
 │   │       ├── types/      # Onboarding TypeScript definitions
@@ -83,17 +84,26 @@ benefit-access-guide-imp/
 │   ├── routes/             # TanStack routing configuration and endpoints
 │   ├── shared/             # Reusable shared global components and utilities
 │   │   ├── components/     # UI kit (Button, Container, TextInput, DatePicker, SelectInput)
+│   │   │                   # Note: Component test files (*.test.tsx) are co-located here
 │   │   │   └── DatePicker/ # Scoped DatePicker component and configuration
 │   │   └── utils/          # Tailored helper functions (e.g. className mergers)
+│   ├── test/               # Testing suite utilities and configuration
+│   │   └── setup.ts        # Test environment setup and browser API stubs (jsdom)
 │   ├── styles/             # Application global style sheets (globals.css)
 │   ├── main.tsx            # React application entry point
 │   ├── router.tsx          # TanStack router setup
+│   ├── RootComponent.tsx   # Root application wrapper
 │   └── routeTree.gen.ts    # Auto-generated TanStack route tree mapping
 ├── eslint.config.js        # Linter policies and code quality rules
 ├── package.json            # Scripts, metadata, and dependencies declaration
 ├── tsconfig.json           # TypeScript compilation configuration
-└── vite.config.ts          # Vite configuration and Tailwind plugins setup
+├── vite.config.ts          # Vite configuration and Tailwind plugins setup
+└── vitest.config.ts        # Vitest configuration for unit & integration tests
 ```
+
+> [!NOTE]
+> **Co-located Test Files**: All component unit and integration test files (`*.test.tsx`) are stored in the same folders as the components they verify. This makes modular components self-contained and simplifies maintenance.
+
 
 ---
 

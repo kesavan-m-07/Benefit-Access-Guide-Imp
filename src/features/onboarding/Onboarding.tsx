@@ -1,7 +1,7 @@
 import BannerNotification from "./components/BannerNotification.tsx";
 import BenefitListItem from "./components/BenefitListItem";
 import { BenefitsList } from "./constants/benefits-list.ts";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FormStepsComponent from "./components/FormSteps";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,6 +21,10 @@ export type FormSteps =
 
 const Onboarding = () => {
   const [step, setStep] = useState<FormSteps>("email");
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [step]);
 
   const methods = useForm<FormValues>({
     resolver: zodResolver(formSchema),

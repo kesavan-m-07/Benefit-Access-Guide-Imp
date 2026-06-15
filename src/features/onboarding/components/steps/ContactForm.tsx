@@ -51,7 +51,7 @@ const ContactForm = () => {
             consent for GetnGoods, Unified Marketing Partners & its{" "}
             <a
               title="https://unified-marketingpartners.com/subsidiaries2"
-              className="text-indigo-650 underline decoration-indigo-600/30 underline-offset-2 hover:decoration-indigo-600"
+              className="text-indigo-600 underline decoration-indigo-600/30 underline-offset-2 hover:decoration-indigo-600"
               href="https://unified-marketingpartners.com/subsidiaries2">
               Subsidiaries
             </a>

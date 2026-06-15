@@ -264,7 +264,7 @@ const DatePickerInner = ({
             inputClassName,
           )}
           wrapperClassName="w-full"
-          {...(props as unknown as Record<string, unknown>)}
+          {...(props as Record<string, unknown>)}
         />
       </motion.div>
 
